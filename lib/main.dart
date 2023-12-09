@@ -133,8 +133,6 @@ class _QuizPageState extends State<QuizPage> {
   late List<Map<String, dynamic>> topicData;
   int currentQuestionIndex = 0;
   int score = 0;
-
-  // Timer variables
   late Timer _timer;
   int _secondsRemaining = 10;
 
@@ -157,7 +155,7 @@ class _QuizPageState extends State<QuizPage> {
         {'question': 'Bananas are berries.', 'answer': true},
         {'question': 'The currency of Switzerland is the Euro.', 'answer': false},
         {'question': 'The sun is a planet.', 'answer': false},
-        {'question': 'The Amazon River is the longest river in the world.', 'answer': true}, // Add more questions and answers
+        {'question': 'The Amazon River is the longest river in the world.', 'answer': true},
       ];
     } else if (topic == 'Science & Technology') {
       return [
@@ -267,7 +265,7 @@ class _QuizPageState extends State<QuizPage> {
           _secondsRemaining--;
         });
       } else {
-        handleAnswer(false); // Timeout, treat as a wrong answer
+        handleAnswer(false); 
       }
     });
   }
@@ -292,13 +290,11 @@ class _QuizPageState extends State<QuizPage> {
     }
 
     if (currentQuestionIndex < topicData.length - 1) {
-      // Move to the next question
       resetTimer();
       setState(() {
         currentQuestionIndex++;
       });
     } else {
-      // Quiz completed, navigate to the result page or show a dialog
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -309,7 +305,7 @@ class _QuizPageState extends State<QuizPage> {
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
-                  Navigator.pop(context); // Pop both the result dialog and the quiz page
+                  Navigator.pop(context);
                 },
                 child: Text('OK'),
               ),
